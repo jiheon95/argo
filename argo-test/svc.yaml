@@ -4,7 +4,7 @@ metadata:
   name: argocd-helloworld
 spec:
   selector:
-    app: argocd-helloworld
+    app: argocd-helloworld2
   ports:
   - port: 80
     targetPort: 80
