@@ -1,16 +1,23 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: argocd-helloworld
-  labels:
-    name: argocd-helloworld
+  name: example-3-nginx
 spec:
-  containers:
-  - name: argocd-helloworld
-    image: nginx
-    resources:
-      limits:
-        memory: "64Mi"
-        cpu: "0.2"
-    ports:
-      - containerPort: 80
+  replicas: 5
+  selector:
+    matchLabels:
+      app: example-3-nginx
+  template:
+    metadata:
+      labels:
+        app: example-3-nginx
+    spec:
+      containers:
+      - name: example-3-nginx
+        image: nginx
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "0.1"
+        ports:
+        - containerPort: 80
