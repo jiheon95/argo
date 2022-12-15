@@ -8,7 +8,7 @@ spec:
     targetPort: 8080
     protocol: TCP
     name: http
-    nodePort: 30081
+    nodePort: 30083
   type: NodePort
   selector:
     app: rollouts-demo
