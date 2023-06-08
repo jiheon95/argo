@@ -32,6 +32,10 @@ kind: Service
 apiVersion: v1
 metadata:
   name: rollout-bluegreen-active
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-06e592c737ec28e44,
+      subnet-0817f6a453a794991
 spec:
   selector:
     app: rollout-bluegreen
@@ -40,13 +44,17 @@ spec:
     port: 80
     targetPort: 8080
     nodePort: 30081
-  type: NodePort
+  type: LoadBalancer
 
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: rollout-bluegreen-preview
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-06e592c737ec28e44,
+      subnet-0817f6a453a794991
 spec:
   selector:
     app: rollout-bluegreen
@@ -55,4 +63,4 @@ spec:
     port: 80
     targetPort: 8080
     nodePort: 30082
-  type: NodePort
+  type: LoadBalancer
